@@ -22,37 +22,29 @@ public class UserServiceImplTest {
 
     @Test
     public void getUserByMobile() {
-        User user = userService.getUserByMobile("17635295479");
+        User user = userService.getUserByMobile("17805116182");
         System.out.println(user);
     }
 
     @Test
     public void signIn() {
         UserDTO loginUser = new UserDTO();
-        loginUser.setMobile("18851999272");
-        String base64Pass = StringUtil.getBase64Encoder("123456");
+        loginUser.setMobile("17805116182");
+        String base64Pass = StringUtil.getBase64Encoder("123");
         loginUser.setPassword(base64Pass);
         int status = userService.signIn(loginUser);
         assertEquals(StatusConst.SUCCESS, status);
     }
 
-
-    @Test
-    public void delete() {
-        userService.delete(1L);
-
-    }
-
     @Test
     public void insert() {
-        User user=new User();
-        user.setMobile("18851999272");
-
-        String password = StringUtil.getBase64Encoder("123456");
+        User user = new User();
+        user.setMobile("17805116188");
+        String password = StringUtil.getBase64Encoder("123");
         user.setPassword(password);
-        user.setNickname("LH");
+        user.setNickname("LHF");
+        user.setStatus((short) 1);
         user.setAvatar("http://www.gx8899.com/uploads/allimg/160822/3-160R20Z026-lp.jpg");
         userService.insert(user);
-
     }
 }

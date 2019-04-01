@@ -9,9 +9,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @MapperScan("com.soft.jianyue.api.mapper")/*在启动之前扫描Mapper*/
 @EnableSwagger2Doc
 public class JianyueApiApplication {
-
     public static void main(String[] args) {
         SpringApplication.run(JianyueApiApplication.class, args);
     }
-
 }
