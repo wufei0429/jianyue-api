@@ -21,7 +21,6 @@ public interface UserService {
      */
     int signIn(UserDTO userDTO);
 
-    User insert(User user);
-
-
+    void delete(long id);
+    void insert(User user);
 }

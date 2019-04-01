@@ -44,8 +44,14 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User insert(User user) {
+    public void delete(long id) {
+        userMapper.delete(id);
+
+    }
+
+    @Override
+    public void insert(User user) {
         userMapper.insert(user);
-        return user;
+
     }
 }

@@ -7,5 +7,3 @@ public class StatusConst {
     public static final int PASSWORD_ERROR = 3;
     public static final int USER_STATUS_ERROR = 4;
 }
-
-

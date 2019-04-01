@@ -28,7 +28,7 @@ public class UserController {
             return ResponseResult.error(StatusConst.USER_MOBILE_NOT_FOUND, MsgConst.USER_MOBILE_NO_FOUND);
         } else {
             //手机号存在，将明文密码转成Base64密文后进行登录
-            userDTO.setPassword(StringUtil.getBCryptEncoder(userDTO.getPassword()));
+            userDTO.setPassword(StringUtil.getBase64Encoder(userDTO.getPassword()));
             int status = userService.signIn(userDTO);
             if (status == StatusConst.SUCCESS) {
                 return ResponseResult.success(user);
