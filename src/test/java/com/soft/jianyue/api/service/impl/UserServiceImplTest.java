@@ -13,7 +13,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 import javax.annotation.Resource;
 
 import static org.junit.Assert.*;
-
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class UserServiceImplTest {
@@ -46,5 +45,18 @@ public class UserServiceImplTest {
         user.setStatus((short) 1);
         user.setAvatar("http://www.gx8899.com/uploads/allimg/160822/3-160R20Z026-lp.jpg");
         userService.insert(user);
+    }
+    @Test
+    public void getUserById() {
+        User user =userService.getUserById(8);
+        System.out.println(user);
+    }
+
+    @Test
+    public void updateUser() {
+        User user = userService.getUserById(9);
+        user.setAvatar("https://img0.pconline.com.cn/pconline/1404/02/4546077_co120p3133452-11.jpg");
+        userService.updateUser(user);
+
     }
 }

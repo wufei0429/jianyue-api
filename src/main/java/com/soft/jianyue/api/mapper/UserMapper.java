@@ -18,9 +18,13 @@ public interface UserMapper {
     @Select("SELECT * FROM t_user WHERE mobile = #{mobile} ")
     User getUserByMobile(String mobile);
 
+    @Select("SELECT * FROM t_user WHERE id = #{id} ")
+    User getUserById(Integer id);
+
     @Update("UPDATE t_user SET password=#{password},nickname=#{nickname},avatar=#{avatar},status=#{status},token=#{token} WHERE id =#{id}")
     void update(User user);
-
+    @Update("UPDATE t_user SET avatar=#{avatar} WHERE id =#{id}")
+    void updateUser(User user);
     //删除
     @Delete( "DELETE FROM  t_user WHERE id =#{id}" )
     void delete(long id);
@@ -28,6 +32,8 @@ public interface UserMapper {
     @Insert("INSERT INTO t_user(mobile,password,nickname,avatar,status)" +
             " VALUES(#{mobile}, #{password}, #{nickname},#{avatar},#{status}) ")
     void insert(User user);
+
+
 
 
 

@@ -23,4 +23,6 @@ public interface UserService {
 
     void delete(long id);
     void insert(User user);
+    User getUserById(Integer id);
+    void updateUser(User user);
 }
