@@ -25,4 +25,7 @@ public interface UserService {
     void insert(User user);
     User getUserById(Integer id);
     void updateUser(User user);
+    int updateNickName(User user);
+    int signUp(UserDTO userDTO);
+    int updatePassword(User user);
 }

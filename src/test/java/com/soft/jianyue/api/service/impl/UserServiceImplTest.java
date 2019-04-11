@@ -21,42 +21,50 @@ public class UserServiceImplTest {
 
     @Test
     public void getUserByMobile() {
-        User user = userService.getUserByMobile("17805116182");
+        User user = userService.getUserByMobile("18851999767");
         System.out.println(user);
     }
 
     @Test
     public void signIn() {
         UserDTO loginUser = new UserDTO();
-        loginUser.setMobile("17805116182");
-        String base64Pass = StringUtil.getBase64Encoder("123");
+        loginUser.setMobile("18851999766");
+        String base64Pass = StringUtil.getBase64Encoder("123456");
         loginUser.setPassword(base64Pass);
         int status = userService.signIn(loginUser);
         assertEquals(StatusConst.SUCCESS, status);
     }
 
-    @Test
-    public void insert() {
-        User user = new User();
-        user.setMobile("17805116188");
-        String password = StringUtil.getBase64Encoder("123");
-        user.setPassword(password);
-        user.setNickname("LHF");
-        user.setStatus((short) 1);
-        user.setAvatar("http://www.gx8899.com/uploads/allimg/160822/3-160R20Z026-lp.jpg");
-        userService.insert(user);
-    }
+//    @Test
+////    public void insert() {
+////        User user = new User();
+////        user.setMobile("18851999767");
+////        String password = StringUtil.getBase64Encoder("123456");
+////        user.setPassword(password);
+////        user.setNickname("呵呵");
+////        user.setStatus((short) 1);
+////        user.setAvatar("http://www.gx8899.com/uploads/allimg/160822/3-160R20Z026-lp.jpg");
+////        userService.insert(user);
+////    }
     @Test
     public void getUserById() {
-        User user =userService.getUserById(8);
+        User user =userService.getUserById(1);
         System.out.println(user);
     }
 
-    @Test
-    public void updateUser() {
-        User user = userService.getUserById(9);
-        user.setAvatar("https://img0.pconline.com.cn/pconline/1404/02/4546077_co120p3133452-11.jpg");
-        userService.updateUser(user);
-
-    }
+//    @Test
+//    public void updateUser() {
+//        User user = userService.getUserById(9);
+//        user.setAvatar("https://img0.pconline.com.cn/pconline/1404/02/4546077_co120p3133452-11.jpg");
+//        userService.updateUser(user);
+//
+//    }
+//    @Test
+//    public void signUp() {
+//        UserDTO userDTO = new UserDTO();
+//        userDTO.setMobile("18851999761");
+//        userDTO.setPassword("123456");
+//        int n = userService.signUp(userDTO);
+//        assertEquals(0, n);
+//    }
 }

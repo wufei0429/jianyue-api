@@ -23,8 +23,15 @@ public interface UserMapper {
 
     @Update("UPDATE t_user SET password=#{password},nickname=#{nickname},avatar=#{avatar},status=#{status},token=#{token} WHERE id =#{id}")
     void update(User user);
+
+
+    @Update("UPDATE t_user SET nickname=#{nickname} WHERE id =#{id}")
+    int updateNickName(User user);
+
     @Update("UPDATE t_user SET avatar=#{avatar} WHERE id =#{id}")
     void updateUser(User user);
+    @Update("UPDATE t_user SET password=#{password} WHERE id =#{id}")
+    int updatePassword(User user);
     //删除
     @Delete( "DELETE FROM  t_user WHERE id =#{id}" )
     void delete(long id);
@@ -32,7 +39,6 @@ public interface UserMapper {
     @Insert("INSERT INTO t_user(mobile,password,nickname,avatar,status)" +
             " VALUES(#{mobile}, #{password}, #{nickname},#{avatar},#{status}) ")
     void insert(User user);
-
 
 
 

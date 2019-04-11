@@ -9,6 +9,7 @@ import com.soft.jianyue.api.util.StringUtil;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.Date;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -54,6 +55,10 @@ public class UserServiceImpl implements UserService {
         userMapper.insert(user);
 
     }
+    @Override
+    public int updateNickName(User user) {
+        return userMapper.updateNickName(user);
+    }
 
     @Override
     public User getUserById(Integer id) {
@@ -65,4 +70,30 @@ public class UserServiceImpl implements UserService {
     public void updateUser(User user) {
         userMapper.updateUser(user);
  }
+
+    @Override
+    public int signUp(UserDTO userDTO) {
+        //先根据手机号找用户是否存在
+        User user = userMapper.getUserByMobile(userDTO.getMobile());
+        if (user != null) {
+            return StatusConst.MOBILE_EXIST;
+        } else {
+            User user1 = new User();
+            user1.setMobile(userDTO.getMobile());
+            user1.setPassword(StringUtil.getBase64Encoder(userDTO.getPassword()));
+            user1.setNickname("kkk");
+            user1.setAvatar("http://downza.img.zz314.com/edu/pc/wlgj-1008/2016-08-13/9c668bbd91e1dcdc90e914990755e2a6.jpg");
+            user1.setRegtime(new Date());
+            user1.setStatus((short) 1);
+            userMapper.insert(user1);
+            return StatusConst.SUCCESS;
+        }
+    }
+
+    @Override
+    public int updatePassword(User user) {
+        return userMapper.updatePassword(user);
+    }
+
+
 }
