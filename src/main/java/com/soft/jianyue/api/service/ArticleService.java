@@ -2,6 +2,7 @@ package com.soft.jianyue.api.service;
 
 import com.soft.jianyue.api.entity.Article;
 import com.soft.jianyue.api.entity.vo.ArticleVO;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -11,7 +12,9 @@ public interface ArticleService {
 
     ArticleVO getArticleById(int aId);
 
-    List<ArticleVO> selectByUId(int uId);
+    List<Article> selectByuId(int uId);
 
     void insertArticle(Article article);
+
+    List<Article> selectByPage(int currPage,int count);
 }

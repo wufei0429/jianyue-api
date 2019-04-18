@@ -14,10 +14,7 @@ import com.soft.jianyue.api.util.ResponseResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @RestController
 @RequestMapping(value = "/api/article")
@@ -55,20 +52,13 @@ public class ArticleController {
         map.put("comments", comments);
         return ResponseResult.success(map);
     }
-//    @GetMapping(value = "/{uId}")
-//    public ResponseResult getArticleById(@PathVariable("uId") int uId,@RequestParam("userId") int userId) {
-//        Article article = articleService.selectByUId(uId);
-//        int toUId = article.getUId();
-//        Map<String, Object> map = new HashMap<>();
-//        Follow follow = followService.getFollow(userId, toUId);
-//        if (follow != null) {
-//            map.put("followed", MsgConst.FOLLOWED);
-//        } else {
-//            map.put("followed", MsgConst.NO_FOLLOWED);
-//        }
-//        map.put("article", article);
-//        return ResponseResult.success(map);
-//    }
+
+    @GetMapping("/getArticleByUID")
+    public ResponseResult selectByuId(@RequestParam("uId") int uId) {
+        List<Article> list = new ArrayList<>();
+        list = articleService.selectByuId(uId);
+        return ResponseResult.success(list);
+    }
     @PostMapping("/add")
     public ResponseResult postArticle(@RequestParam("uId") int uId,
                                       @RequestParam("title") String title,

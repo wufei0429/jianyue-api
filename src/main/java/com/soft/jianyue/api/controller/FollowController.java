@@ -1,14 +1,14 @@
 package com.soft.jianyue.api.controller;
 
 import com.soft.jianyue.api.entity.Follow;
+import com.soft.jianyue.api.entity.vo.FollowVO;
 import com.soft.jianyue.api.service.FollowService;
 import com.soft.jianyue.api.util.ResponseResult;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 @RequestMapping(value = "/api/follow")
@@ -31,4 +31,12 @@ public class FollowController {
         followService.deleteFollow(fromUId, toUId);
         return ResponseResult.success();
     }
+
+    @GetMapping("/getFollowsByUId")
+    public ResponseResult getFollowsByUId(@RequestParam("fromUId") int uId) {
+        List<FollowVO> list = new ArrayList<>();
+        list = followService.getFollowsByUId(uId);
+        return ResponseResult.success(list);
+    }
+
 }

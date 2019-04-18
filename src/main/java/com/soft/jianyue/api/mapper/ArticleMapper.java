@@ -35,16 +35,28 @@ public interface ArticleMapper {
     @Select("SELECT a.*, b.nickname, b.avatar FROM t_article AS a LEFT JOIN t_user AS b ON a.u_id = b.id WHERE a.id = #{aId}")
     ArticleVO getArticleById(int aId);
 
+    @Insert("INSERT INTO t_article (u_id,title,content,create_time) VALUES (#{uId},#{title},#{content},#{createTime}) ")
+    @Options(useGeneratedKeys = true, keyProperty = "id", keyColumn = "id")
+    void insertArticle(Article article);
+
+
     @Results({
+            @Result(property = "id", column = "id"),
             @Result(property = "uId", column = "u_id"),
             @Result(property = "title", column = "title"),
             @Result(property = "content", column = "content"),
             @Result(property = "createTime", column = "create_time")
     })
-    @Select("SELECT * FROM t_article  WHERE u_id=#{id}")
-    List<ArticleVO> selectByUId(int uId);
+    @Select("SELECT * FROM t_article WHERE u_id = #{uId}")
+    List<Article> selectByuId(int uId);
 
-    @Insert("INSERT INTO t_article (u_id,title,content,create_time) VALUES (#{uId},#{title},#{content},#{createTime}) ")
-    @Options(useGeneratedKeys = true, keyProperty = "id", keyColumn = "id")
-    void insertArticle(Article article);
+    @Results({
+            @Result(property = "id", column = "id"),
+            @Result(property = "uId", column = "u_id"),
+            @Result(property = "title", column = "title"),
+            @Result(property = "content", column = "content"),
+            @Result(property = "createTime", column = "create_time")
+    })
+    @Select("SELECT * FROM t_article limit  #{currPage},  #{count}")
+    List<Article> selectByPage(@Param("currPage") int currPage,@Param("count")int count);
 }

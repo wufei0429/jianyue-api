@@ -8,6 +8,7 @@ import com.soft.jianyue.api.service.ArticleService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.List;
 @Service
 public class ArticleServiceImpl implements ArticleService {
@@ -26,16 +27,23 @@ public class ArticleServiceImpl implements ArticleService {
 
     @Override
     public ArticleVO getArticleById(int aId) {
-        return articleMapper.getArticleById(1);
+        return articleMapper.getArticleById(aId);
     }
 
     @Override
-    public List<ArticleVO> selectByUId(int uId) {
-        return articleMapper.selectByUId(uId);
+    public List<Article> selectByuId(int uId) {
+        List<Article> list = new ArrayList<>();
+        list = articleMapper.selectByuId(uId);
+        return list;
     }
 
     @Override
     public void insertArticle(Article article) {
         articleMapper.insertArticle(article);
+    }
+
+    @Override
+    public List<Article> selectByPage(int currPage, int count) {
+        return articleMapper.selectByPage((currPage-1)*count,count);
     }
 }

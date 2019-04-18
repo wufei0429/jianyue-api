@@ -1,5 +1,6 @@
 package com.soft.jianyue.api.service.impl;
 
+import com.github.pagehelper.PageHelper;
 import com.soft.jianyue.api.entity.Article;
 import com.soft.jianyue.api.entity.vo.ArticleVO;
 import com.soft.jianyue.api.service.ArticleService;
@@ -7,6 +8,8 @@ import com.soft.jianyue.api.service.ImgService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.annotation.Resource;
@@ -33,7 +36,14 @@ public class ArticleServiceImplTest {
         for (ArticleVO articleVO:articles){
             articleVO.setImgs(imgService.selectImgsByaId(articleVO.getId()));
         }
+
         System.out.println(articles);
+    }
+
+    @Test
+    public void selectByPage(){
+        List<Article> articleList=articleService.selectByPage(2,5);
+        articleList.forEach(article -> System.out.println(article.getId()+"\t"+article.getTitle()));
     }
 
     @Test
