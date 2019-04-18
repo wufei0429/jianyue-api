@@ -17,8 +17,8 @@ public class SMSUtil {
     public static String send(String mobile) {
         DefaultProfile profile = DefaultProfile.getProfile(
                 "cn-hangzhou",
-                "LTAIxpdb7oeeO6Zr",
-                "kUmVZo7lQgZn7M1Ma1xLAND5Kzf3J5");
+                "*****",
+                "****");
         IAcsClient client = new DefaultAcsClient(profile);
         CommonRequest request = new CommonRequest();
         request.setMethod(MethodType.POST);
@@ -43,6 +43,6 @@ public class SMSUtil {
     }
 
     public static void main(String[] args) {
-        System.out.println(send("18851999767"));
+        System.out.println(send("*****"));
     }
 }
